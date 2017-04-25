@@ -2,19 +2,27 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+  headerMessage: 'Coming soon',
+  responseMessage: '',
   emailAddress: '',
 
   isValid: 
   Ember.computed.match('emailAddress', /^.+@.+\..+$/),
-
   isDisabled: 
   Ember.computed.not('isValid'),
 
   actions: {
    saveInvitation() {
-      alert(`Saving of the following email adress is in progress: ${this.get('emailAddress')}`);
-      this.set('responseMessage', `Thnak you! We've just saved you email adress: ${this.get('emailAddress')} `);
+     const email = this.get('emailAddress');
+     const newInvitation = this.store.createRecord('invitation', 
+      { email: email});
+
+     newInvitation.save().then((response) => {
+      this.set('responseMessage', `Thank you! We've just saved you email address with the following id: ${response.get('id')}`);
       this.set('emailAddress', '');
+     });
+
+      
     }
   }
 
