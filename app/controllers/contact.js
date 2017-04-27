@@ -41,7 +41,6 @@ export default Ember.Controller.extend({
 
 	actions: {
 		sendMessage() {
-			alert(`Sending the following message: ${this.get('message')} to ${this.get('emailAddress2')}`);
 			this.set('responseMessage', `Thank you! We just send your message: ${this.get('message')}` );			
 		}
 	}

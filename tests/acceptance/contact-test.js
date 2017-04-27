@@ -54,6 +54,7 @@ test('button validation', function(assert) {
   visit('/contact');
   fillIn('textarea', '12345');
   fillIn('input', 'correct@email.com');
+  click('button#contactButton');
   andThen(() => {
     //textarea
     let textareaClass = $("#divTextarea").prop("class");
@@ -68,6 +69,7 @@ test('button validation', function(assert) {
     assert.equal(button, false, "Button validation");
     assert.equal(inputClassEnd, "has-success", "Input class validation");
     assert.equal(textareaClassEnd, "has-success", "Textarea class validation");
+    assert.ok(find('.alert').text(), 'response message validation');
   });
 });
 
