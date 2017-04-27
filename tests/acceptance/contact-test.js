@@ -54,7 +54,6 @@ test('button validation', function(assert) {
   visit('/contact');
   fillIn('textarea', '12345');
   fillIn('input', 'correct@email.com');
-  click('button#contactButton');
   andThen(() => {
     //textarea
     let textareaClass = $("#divTextarea").prop("class");
@@ -69,13 +68,29 @@ test('button validation', function(assert) {
     assert.equal(button, false, "Button validation");
     assert.equal(inputClassEnd, "has-success", "Input class validation");
     assert.equal(textareaClassEnd, "has-success", "Textarea class validation");
+
+  });
+
+    click('button#contactButton');
+  andThen(() => {
+    
     assert.ok(find('.alert').text(), 'response message validation');
   });
 });
 
+test('contacts list test', function(assert) {
+  visit('/contact');
+  let textEmail = 'hello2@email.com';
+  let textMessage = 'Hello2';
+  fillIn('input', textEmail);
+  fillIn('textarea', textMessage);
+  click('button#contactButton');
+  visit('/admin/contacts');
+  andThen(() => {
+    let email = find('.email:first').prop('innerHTML');
+    let message = find('.message:first').prop('innerHTML');
 
-
-
-
-
-  
+    assert.equal(email, textEmail, 'Email is correct');
+    assert.equal(message, textMessage, 'Message is correct');
+  });
+});
