@@ -2,14 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  isClicked: false,
-
-  waitConfirmation() {
-    return new Promise((resolve, reject) => {
-      console.log("Wait");
-      resolve(true);
-    });
-  },
+  confirmation: false,
 
   model(params) {
     return this.store.findRecord('library', params.library_id);
@@ -21,37 +14,23 @@ export default Ember.Route.extend({
 
     },
 
-    isClicked() {
-      this.set('isClicked', true);
+    confirmLeaving() {
+      this.set('confirmation', true);
+      this.get('transition').retry().then(() => {
+        this.set('confirmation', false);
+        $('#transitionModal').modal('hide');
+      });
     },
 
 
     willTransition(transition) {
-
       let model = this.controller.get('model');
-      let isClicked = this.get('isClicked');
-        
-      
-      return this.waitConfirmation().then((value) => {
-        console.log(value);
-        if (value) {
-          transition.abort();
-        }
-        
-        // if (model.get('hasDirtyAttributes')) {
-        //   console.log(model);
-        //   //$('#transitionModal').modal('show');
-        //   transition.abort();
-        //   // if (isClicked) {
-        //   //   model.rollbackAttributes();
-        //   // } else {
-        //   //   this.set('isClicked', false);
-        //   //   transition.abort();
-
-        //   // }
-        // }
-      });
-      
+      if (model.get('hasDirtyAttributes') && !this.get('confirmation')) {
+        console.log(this.get('confirmation'))
+        this.set('transition', transition);
+        transition.abort();
+        $('#transitionModal').modal('show');
+      }
     }
   }
 });
