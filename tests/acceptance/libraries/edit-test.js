@@ -25,7 +25,7 @@ test('edit test', function(assert) {
   });
 });
 
-test('try leave the route', function(assert) {
+test('try leave the route and stay', function(assert) {
   visit('/libraries/');
   click('a.btn.btn-success.btn-xs');
 
@@ -33,10 +33,32 @@ test('try leave the route', function(assert) {
   fillIn('input#inputEditName', textName);
   click('a.navbar-brand');
 
+  click('#btnModalCancel');
+
   andThen(() => {
     console.log(currentURL());
+    assert.equal(find("#inputEditName").prop("value"), textName);
     assert.notEqual(currentURL(), '/', "didn't leave the route");
   });
+
+
+});
+
+test('try leave the route and leave', function(assert) {
+  visit('/libraries/');
+  click('a.btn.btn-success.btn-xs');
+
+  let textName = "Name try leave the route";
+  fillIn('input#inputEditName', textName);
+  click('a.navbar-brand');
+
+  click('#btnModalConfirm');
+
+  andThen(() => {
+    console.log(currentURL());
+    assert.equal(currentURL(), '/', "left the route");
+  });
+
 
 });
 

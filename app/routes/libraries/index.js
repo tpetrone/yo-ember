@@ -8,7 +8,11 @@ export default Ember.Route.extend({
 
   actions: {
     deleteLibrary(library) {
+      let confirmation = confirm('Are you sure you want to delete?');
+
+      if (confirmation) {
         library.destroyRecord();
+      }
     }
   }
 
