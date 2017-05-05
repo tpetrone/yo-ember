@@ -12,8 +12,7 @@ export default Ember.Route.extend({
 
       if (confirmation) {
         
-          library.destroyRecord();
-
+        library.destroyRecord();
 
       }
     }
