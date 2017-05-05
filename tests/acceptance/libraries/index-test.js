@@ -13,7 +13,7 @@ test('visiting /libraries/index', function(assert) {
 
 test('click delete and confirm', function(assert) {
   //let originalAlert = window.confirm;
-  window.confirm = function() {return true};
+  window.confirm = function() {return true;};
 
   visit('/libraries/');
 
