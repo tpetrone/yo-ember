@@ -11,7 +11,14 @@ export default Ember.Route.extend({
       let confirmation = confirm('Are you sure you want to delete?');
 
       if (confirmation) {
-        library.destroyRecord();
+        
+        try {
+          library.destroyRecord();
+        } catch (e) {
+          record.transitionTo('deleted.saved');
+        }
+
+
       }
     }
   }

@@ -12,21 +12,20 @@ test('visiting /libraries/index', function(assert) {
 });
 
 test('click delete and confirm', function(assert) {
-  assert.expect(0);
-
   //let originalAlert = window.confirm;
-  //window.confirm = function() {return true};
+  window.confirm = function() {return true};
 
   visit('/libraries/');
 
+  let before = null;
+
   andThen(() => {
-    console.log($(".panel").length);
+    before = $(".panel").length;
   });
   
   andThen(() => {
     $('.btn-danger:first').click();
   });
-
 
   // This isn't the ideal solution, it's provisional.
   andThen(() => {
@@ -34,10 +33,8 @@ test('click delete and confirm', function(assert) {
   });
 
   andThen(() => {
-    console.log($(".panel").length);
-
+    let after = $(".panel").length;
+    assert.equal(after, before-1, "deleted the library");
   });
 
-
-  
 });
