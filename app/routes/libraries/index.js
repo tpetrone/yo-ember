@@ -12,12 +12,7 @@ export default Ember.Route.extend({
 
       if (confirmation) {
         
-        try {
           library.destroyRecord();
-        } catch (e) {
-          record.transitionTo('deleted.saved');
-        }
-
 
       }
     }
