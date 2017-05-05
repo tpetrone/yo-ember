@@ -10,10 +10,10 @@ test('edit test', function(assert) {
   let textName = "Name Alterado17";
   let textAddress = "Address Alterado";
   let textPhone = "Phone Alterado";
-  fillIn('input#inputEditName', textName);
-  fillIn('input#inputEditAddress', textAddress);
-  fillIn('input#inputEditPhone', textPhone);
-  click('button#btnEditLibrary');
+  fillIn('input#inputName', textName);
+  fillIn('input#inputAddress', textAddress);
+  fillIn('input#inputPhone', textPhone);
+  click('button#btnLibrary');
 
   andThen(() => {
     let inputName = find(".panel-title:first").prop("innerText");
@@ -30,14 +30,14 @@ test('try leave the route and stay', function(assert) {
   click('a.btn.btn-success.btn-xs');
 
   let textName = "Name try leave the route";
-  fillIn('input#inputEditName', textName);
+  fillIn('input#inputName', textName);
   click('a.navbar-brand');
 
   click('#btnModalCancel');
 
   andThen(() => {
     console.log(currentURL());
-    assert.equal(find("#inputEditName").prop("value"), textName);
+    assert.equal(find("#inputName").prop("value"), textName);
     assert.notEqual(currentURL(), '/', "didn't leave the route");
   });
 
@@ -49,7 +49,7 @@ test('try leave the route and leave', function(assert) {
   click('a.btn.btn-success.btn-xs');
 
   let textName = "Name try leave the route";
-  fillIn('input#inputEditName', textName);
+  fillIn('input#inputName', textName);
   click('a.navbar-brand');
 
   click('#btnModalConfirm');

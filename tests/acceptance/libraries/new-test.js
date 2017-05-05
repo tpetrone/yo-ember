@@ -11,7 +11,7 @@ test('libraries test', function(assert) {
   fillIn('input#inputName', textName);
   fillIn('input#inputAddress', textAddress);
   fillIn('input#inputPhone', textPhone);
-  click('button#btnNewLibrary');
+  click('button#btnLibrary');
 
   andThen(() => {
     let name = find('.panel-title:first').prop('innerText');
