@@ -36,5 +36,4 @@ test('click delete and confirm', function(assert) {
     let after = $(".panel").length;
     assert.equal(after, before-1, "deleted the library");
   });
-
 });

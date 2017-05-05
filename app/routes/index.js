@@ -6,13 +6,6 @@ export default Ember.Route.extend({
 		return this.store.createRecord('invitation');
 	},
 
-	/*emailAddress: '',
-
-	isValid: 
-	Ember.computed.match('emailAddress', /^.+@.+\..+$/),
-	isDisabled: 
-	Ember.computed.not('isValid'),*/
-
 	actions: {
 		saveInvitation(newInvitation) {
 			newInvitation.save().then(() => this.transitionTo('/admin/invitations'));
