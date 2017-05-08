@@ -9,7 +9,7 @@
 			{{input value=counter class='form-control' placeholder=placeholder}}
 		</div>
 
-		<button class="btn btn-primary" {{action 'generateAction'}} disabled={{if isCounterValid id false true}}>Generate {{sectionTitle}}</button>
+		<button class="btn btn-primary" {{action 'generateAction'}} disabled={{if isCounterValid false true}}>Generate {{sectionTitle}}</button>
 		{{#fader-label isShowing=createReady}}Create!{{/fader-label}}
 
 		<button class="btn btn-danger" {{action 'deleteAction'}}>Delete all {{sectionTitle}}</button>
