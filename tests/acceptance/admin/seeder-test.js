@@ -11,6 +11,35 @@ test('visiting /admin/seeder', function(assert) {
 	});
 });
 
+test('deleting all libraries', function(assert) {
+	visit('/admin/seeder');
+
+	andThen(function() {
+		click('.btn-danger:first');
+	});
+
+	andThen(function() {
+		assert.equal(find('.modelNumber:first').prop("innerHTML"), 
+			"0", "deleted all libraries");
+	});
+});
+
+/*test('deleting all authors and books', function(assert) {
+	visit('/admin/seeder');
+
+	andThen(function() {
+		click('.btn-danger:last');
+	});
+
+	andThen(function() {
+		let item = $('.modelNumber')[1];
+		let authors = $(item).text();
+		assert.equal(authors, "0", "deleted all authors");
+		assert.equal(find('.modelNumber:last').prop("innerHTML"), 
+			"0", "deleted all books");
+	});
+});*/
+
 test('generating libraries', function(assert) {
 	visit('/admin/seeder');
 
@@ -32,20 +61,7 @@ test('generating libraries', function(assert) {
 	});
 });
 
-test('deleting all libraries', function(assert) {
-	visit('/admin/seeder');
-
-	andThen(function() {
-		click('.btn-danger:first');
-	});
-
-	andThen(function() {
-		assert.equal(find('.modelNumber:first').prop("innerHTML"), 
-			"0", "deleted all libraries");
-	});
-});
-
-test('generating authors and books', function(assert) {
+/*test('generating authors and books', function(assert) {
 	visit('/admin/seeder');
 
 	let beforeAuthors;
@@ -71,20 +87,4 @@ test('generating authors and books', function(assert) {
 		assert.equal(afterAuthors, parseInt(beforeAuthors)+add, "generated authors");
 		assert.ok(parseInt(afterBooks) > parseInt(beforeBooks), "generated books");
 	});
-});
-
-test('deleting all authors and books', function(assert) {
-	visit('/admin/seeder');
-
-	andThen(function() {
-		click('.btn-danger:last');
-	});
-
-	andThen(function() {
-		let item = $('.modelNumber')[1];
-		let authors = $(item).text();
-		assert.equal(authors, "0", "deleted all authors");
-		assert.equal(find('.modelNumber:last').prop("innerHTML"), 
-			"0", "deleted all books");
-	});
-});
+});*/
