@@ -34,7 +34,10 @@
         </li>
       </ul>
 
-      <a {{action 'invalidateSession'}}>Logout</a>
+       <ul class='nav navbar-nav navbar-right'>
+        <a {{action 'invalidateSession'}}>Logout</a>
+      </ul>
+      
       {{else}}
       <ul class='nav navbar-nav navbar-right'>
         {{#nav-link-to 'login'}}Login{{/nav-link-to}}

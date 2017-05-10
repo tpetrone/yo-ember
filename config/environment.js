@@ -14,13 +14,12 @@ module.exports = function(environment) {
     },
 
     firebase: {
-    apiKey: 'AIzaSyADHwnU3O-7oJWZWy3bGJun2sfa5uSbMi4',
-    authDomain: 'yo-ember-6f8f9.firebaseapp.com',
-    databaseURL: 'https://yo-ember-6f8f9.firebaseio.com',
-    storageBucket: 'yo-ember-6f8f9.appspot.com',
-    messagingSenderId: "547033235722"
-  },    
-
+      apiKey: 'AIzaSyADHwnU3O-7oJWZWy3bGJun2sfa5uSbMi4',
+      authDomain: 'yo-ember-6f8f9.firebaseapp.com',
+      databaseURL: 'https://yo-ember-6f8f9.firebaseio.com',
+      storageBucket: 'yo-ember-6f8f9.appspot.com',
+      messagingSenderId: "547033235722"
+    },    
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -51,12 +50,12 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-      ENV['ember-faker'] = {
-        enabled: true
-      };
+    ENV['ember-faker'] = {
+      enabled: true
+    };
   }
 
   return ENV;
 
-	
+  
 };
