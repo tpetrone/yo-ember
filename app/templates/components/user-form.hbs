@@ -3,7 +3,7 @@
   {{input id='email' placeholder='Enter Login' value=email}}
   <label for="password">Password</label>
   {{input id='password' placeholder='Enter Password' type='password' value=password}}
-  <button id='btnLogin' type="submit">Login
+  <button id='btnLogin' type="submit">{{yield}}
 </button>
   {{#if errorMessage}}
   <p>{{errorMessage}}</p>

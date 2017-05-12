@@ -4,7 +4,9 @@ export default Ember.Route.extend({
   session: Ember.inject.service(),
 
   beforeModel: function() {
-    return this.get('session').fetch().catch(function() {});
-  }
-  
+    if(!this.get('session.isAuthenticated')) {
+     return this.transitionTo('login'); 
+   }
+ }
+
 });

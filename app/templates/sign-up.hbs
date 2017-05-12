@@ -1,9 +1,9 @@
-<form {{action 'authenticate' email password on='submit'}}>
+<form {{action 'signUp' email password on='submit'}}>
   <label for="email">Email</label>
   {{input id='email' placeholder='Enter Login' value=email}}
   <label for="password">Password</label>
   {{input id='password' placeholder='Enter Password' type='password' value=password}}
-  <button id='btnLogin' type="submit">Login
+  <button id='btnSignUp' type="submit">Sign up
 </button>
   {{#if errorMessage}}
   <p>{{errorMessage}}</p>
