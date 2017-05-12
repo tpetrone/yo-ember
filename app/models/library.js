@@ -6,8 +6,8 @@ export default DS.Model.extend({
 	name: DS.attr('string'),
 	address: DS.attr('string'),
 	phone: DS.attr('string'),
-
 	books: DS.hasMany('book', {inverse: 'library', async: true}),
+	user: DS.belongsTo('user', {inverse: 'library'}),
 
 	isValid: Ember.computed.notEmpty('name'),
 
