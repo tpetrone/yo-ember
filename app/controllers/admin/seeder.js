@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
       Ember.RSVP.all(savedLibraries)
       .then(() => {
        this.set('generateLibrariesInProgress', false);
-       this.set('libDone', true)
+       this.set('libDone', true);
      });
 
     },

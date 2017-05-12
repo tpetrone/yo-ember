@@ -13,8 +13,8 @@ test('visiting /login', function(assert) {
 
 test('sign in', function(assert) {
   visit('/login');
-  fillIn('#email', 'teste@email.com');
-  fillIn('#password', 'daniel');
+  fillIn('#email', 'yuji@email.com');
+  fillIn('#password', 'leonardo');
   click('#btnLogin');
 
   andThen(function() {

@@ -1,19 +1,21 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  session: Ember.inject.service('session'),
-  firebaseApp: Ember.inject.service(),
+  session: Ember.inject.service(),
 
   actions: {
    authenticate(email, password) {
-    let firebase = this.get('firebaseApp');
-    let session = this.get('session');
+    
+    console.log(email);
 
-    //let { email, password } = this.getProperties('email', 'password');
-    this.get('session').authenticate('authenticator:firebase', email, password).then(() => {
-      this.transitioTo("/admin/seeder");
-    }).catch((reason) => {
-      this.set('errorMessage', reason.error || reason);
+    this.get('session').open('firebase', {
+      provider: 'password',
+      email: email,
+      password: password,
+    }).then(() => {
+      this.transitionTo('/admin/seeder');
+    }, (error) => {
+      console.log(error);
     });
   }
 }

@@ -1,3 +1,4 @@
+
 /* jshint node: true */
 
 module.exports = function(environment) {
@@ -19,7 +20,12 @@ module.exports = function(environment) {
       databaseURL: 'https://yo-ember-6f8f9.firebaseio.com',
       storageBucket: 'yo-ember-6f8f9.appspot.com',
       messagingSenderId: "547033235722"
-    },    
+    },
+
+    torii: {
+      sessionServiceName: 'session'
+    },
+     
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created

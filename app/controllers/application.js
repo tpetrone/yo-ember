@@ -6,7 +6,10 @@ export default Ember.Controller.extend({
   actions: {
     invalidateSession() {
       let session = this.get('session');
-      session.invalidate();
+      session.close().then(() => {
+        this.transitionToRoute('/login');
+      });
+
     }
   }
 
