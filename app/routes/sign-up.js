@@ -1,23 +1,30 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  session: Ember.inject.service(),
   firebaseApp: Ember.inject.service(),
 
-  actions: {
-    
-    signUp(email, password) {
-      let firebase = this.get('firebaseApp');
+  beforeModel: function() {
+    if(this.get('session.isAuthenticated')) {
+     return this.transitionTo('/'); 
+   }
+ },
 
-      firebase.auth().createUserWithEmailAndPassword(email, password).then((user) => {
-        let newUser = this.store.createRecord('user', {
-          id : user.uid,
-          email : user.email
-        });
+ actions: {
+  
+  signUp(email, password) {
+    let firebase = this.get('firebaseApp');
 
-        newUser.save().then(() => this.transitionTo('login'));
-        
-     });
+    firebase.auth().createUserWithEmailAndPassword(email, password).then((user) => {
+      let newUser = this.store.createRecord('user', {
+        id : user.uid,
+        email : user.email
+      });
 
-    }
+      newUser.save().then(() => this.transitionTo('login'));
+      
+    });
+
   }
+}
 });

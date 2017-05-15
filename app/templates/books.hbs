@@ -15,8 +15,8 @@
     {{#each model as |book|}}
     <tr>
       <td>
-        {{#if session.isAuthenticated}}
         {{#if book.isEditing}}
+        {{#if session.isAuthenticated}}
         <form {{action 'saveBook' book on='submit'}} class="form-inline">
           <div class="input-group">
             {{input value=book.title class="form-control"}}
