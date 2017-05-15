@@ -1,13 +1,21 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'yo-ember/tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | admin/invitations');
+moduleForAcceptance('Acceptance | logged/admin/invitations', {
 
-test('visiting /admin/invitations', function(assert) {
-	visit('/admin/invitations');
+  beforeEach() {
+    visit('/logout');
+  fillIn('#email', 'yuji@email.com');
+  fillIn('#password', 'leonardo');
+  click('#btnLogin');
+  }
+});
+
+test('visiting /logged/admin/invitations', function(assert) {
+	visit('/logged/admin/invitations');
 
 	andThen(function() {
-		assert.equal(currentURL(), '/admin/invitations');
+		assert.equal(currentURL(), '/logged/admin/invitations');
 	});
 });
 
@@ -17,7 +25,7 @@ test('invitations test', function(assert) {
 	fillIn('input', textEmail);
 	click("button#inputButton");
 
-	visit('/admin/invitations');
+	visit('/logged/admin/invitations');
 
 	andThen(() => {
 		assert.equal(find(".email:first").prop("innerHTML"), textEmail, "Email is correct");
@@ -26,23 +34,23 @@ test('invitations test', function(assert) {
 
 test('click delete and confirm', function(assert) {
   //let originalAlert = window.confirm;
-	window.confirm = function() {return true;};
+  window.confirm = function() {return true;};
 
-	visit('/admin/invitations');
+  visit('/logged/admin/invitations');
 
-	let idBefore = $(".id:first");
-	
-	andThen(() => {
-		$('.btn-danger:first').click();
-	});
+  let idBefore = $(".id:first");
+  
+  andThen(() => {
+  	$('.btn-danger:first').click();
+  });
 
   // This isn't the ideal solution, it's provisional.
-	andThen(() => {
-		visit('/admin/invitations');
-	});
+  andThen(() => {
+  	visit('/logged/admin/invitations');
+  });
 
-	andThen(() => {
-		let idAfter = $(".id:first");
-		assert.notEqual(idAfter, idBefore, "deleted the invitation");
-	});
+  andThen(() => {
+  	let idAfter = $(".id:first");
+  	assert.notEqual(idAfter, idBefore, "deleted the invitation");
+  });
 });

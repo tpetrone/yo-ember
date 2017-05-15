@@ -4,7 +4,7 @@ import moduleForAcceptance from 'yo-ember/tests/helpers/module-for-acceptance';
 moduleForAcceptance('Acceptance | login');
 
 test('visiting /login', function(assert) {
-  visit('/login');
+  visit('/logout');
 
   andThen(function() {
     assert.equal(currentURL(), '/login');
@@ -12,12 +12,13 @@ test('visiting /login', function(assert) {
 });
 
 test('sign in', function(assert) {
+  visit('/logout');
   visit('/login');
   fillIn('#email', 'yuji@email.com');
   fillIn('#password', 'leonardo');
   click('#btnLogin');
 
   andThen(function() {
-    assert.equal(currentURL(), '/admin/seeder');
+    assert.equal(currentURL(), '/logged/admin/seeder');
   });
 });

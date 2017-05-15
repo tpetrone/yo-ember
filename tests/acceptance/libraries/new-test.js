@@ -1,9 +1,17 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'yo-ember/tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | libraries/new');
+moduleForAcceptance('Acceptance | libraries/new', {
 
-test('libraries test', function(assert) {
+  beforeEach() {
+  visit('/logout');
+  fillIn('#email', 'yuji@email.com');
+  fillIn('#password', 'leonardo');
+  click('#btnLogin');
+  }
+});
+
+test('new library', function(assert) {
   visit('/libraries/new');
   let textName = "name5";
   let textAddress = "address5";
@@ -14,9 +22,9 @@ test('libraries test', function(assert) {
   click('button#btnLibrary');
 
   andThen(() => {
-    let name = find('.panel-title:first').prop('innerText');
-    let address = find('.addressSpan:first').prop('innerHTML');
-    let phone = find('.phoneSpan:first').prop('innerHTML');
+    let name = find('.panel-title:last').prop('innerText');
+    let address = find('.addressSpan:last').prop('innerHTML');
+    let phone = find('.phoneSpan:last').prop('innerHTML');
 
     assert.equal(name, textName, 'name is correct');
     assert.equal(address, textAddress, 'address is correct');

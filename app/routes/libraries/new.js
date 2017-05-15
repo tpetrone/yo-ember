@@ -4,10 +4,10 @@ export default Ember.Route.extend({
 	session: Ember.inject.service(),
 	
 	beforeModel: function() {
-    if(!this.get('session.isAuthenticated')) {
-     return this.transitionTo('login'); 
-   }
- },
+		if(!this.get('session.isAuthenticated')) {
+			return this.transitionTo('login'); 
+		}
+	},
 
 	model() {
 		return this.store.createRecord('library');
@@ -29,7 +29,10 @@ export default Ember.Route.extend({
 			let sessionUid = this.get('session').get('uid');
 			this.store.find('user', sessionUid).then((user) => {
 				newLibrary.set('user', user);
-				newLibrary.save().then(() => this.transitionTo('libraries'));
+				newLibrary.save().then(() => {
+					user.save();
+					this.transitionTo('libraries');
+				});
 			});
 		},
 
