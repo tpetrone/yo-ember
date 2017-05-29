@@ -8,7 +8,7 @@ export default Ember.Route.extend({
 
 	actions: {
 		saveInvitation(newInvitation) {
-			newInvitation.save().then(() => this.transitionTo('/admin/invitations'));
+			newInvitation.save().then(() => this.transitionTo('/logged/admin/invitations'));
 		},
 
 		willTransition() {

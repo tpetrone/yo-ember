@@ -39,17 +39,11 @@ export default Ember.Route.extend({
       let model = this.controller.get('model');
 
       if (model.get('hasDirtyAttributes') && !this.get('confirmation')) {
-        console.log(this.get('confirmation'));
         this.set('transition', transition);
-
 
         transition.abort();
 
-
-        $('#transitionModal').modal('show');
-
-
-        
+        $('#transitionModal').modal('show');        
       }
     }
   }

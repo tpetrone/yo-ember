@@ -85,7 +85,7 @@ test('contacts list test', function(assert) {
   fillIn('input', textEmail);
   fillIn('textarea', textMessage);
   click('button#contactButton');
-  visit('/admin/contacts');
+  visit('/logged/admin/contacts');
   andThen(() => {
     let email = find('.email:first').prop('innerHTML');
     let message = find('.message:first').prop('innerHTML');

@@ -4,12 +4,12 @@
   <div class="col-md-4">
 
     {{#library-item item=library}}
-
+    {{#if session.isAuthenticated}}
     {{#link-to 'libraries.edit' library.id class='btn btn-success btn-xs'}}Edit{{/link-to}}
 
     <button class="btn btn-danger btn-xs" {{action 'deleteLibrary' library}}>Delete</button>
+    {{/if}}
     {{/library-item}}
-
   </div>
   {{/each}}
 </div>

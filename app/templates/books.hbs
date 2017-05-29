@@ -4,7 +4,9 @@
   <thead>
     <tr>
       <th>Name
-        <br><small class="small not-bold">(Click on name for editing)</small>
+        {{#if session.isAuthenticated}}
+        <br><small class="small not-bold">(Click on title for editing)</small>
+        {{/if}}
       </th>
       <th class="vtop">Author</th>
     </tr>
@@ -14,6 +16,7 @@
     <tr>
       <td>
         {{#if book.isEditing}}
+        {{#if session.isAuthenticated}}
         <form {{action 'saveBook' book on='submit'}} class="form-inline">
           <div class="input-group">
             {{input value=book.title class="form-control"}}
@@ -23,6 +26,7 @@
             </div>
           </div>
         </form>
+        {{/if}}
         {{else}}
         <span class="bookTitle" {{action 'editBook' book}}>{{book.title}}</span>
         {{/if}}

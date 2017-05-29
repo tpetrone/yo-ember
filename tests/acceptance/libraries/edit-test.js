@@ -1,7 +1,15 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'yo-ember/tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | libraries/edit');
+moduleForAcceptance('Acceptance | libraries/edit', {
+
+  beforeEach() {
+    visit('/logout');
+  fillIn('#email', 'yuji@email.com');
+  fillIn('#password', 'leonardo');
+  click('#btnLogin');
+  }
+});
 
 test('edit test', function(assert) {
   visit('/libraries/');
